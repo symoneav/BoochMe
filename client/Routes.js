@@ -16,15 +16,15 @@ const Routes = () => {
       <div>
         <nav>
           hola
-          <NavLink to="/">Home</NavLink>
+          {/* <NavLink to="/">Home</NavLink>
           <NavLink to="/distributors">Distributors</NavLink>
-          <NavLink to="/companies">Companies</NavLink>
+          <NavLink to="/companies">Companies</NavLink> */}
         </nav>
         <main>
           <Switch>
-            <Route exact path="/" component={Home} />
+            {/* <Route exact path="/" component={Home} />
             <Route exact path="/distributors" component={Distributors} />
-            <Route exact path="/companies" component={Companies} />
+            <Route exact path="/companies" component={Companies} /> */}
           </Switch>
         </main>
       </div>
