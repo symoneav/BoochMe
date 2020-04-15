@@ -7,8 +7,8 @@ const Distributor = db.define("distributor", {
     allowNull: false,
     validate: { notEmpty: true },
   },
-  address: {
-    type: Sequelize.STRING,
+  addresses: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false,
     validate: { notEmpty: true },
   },
