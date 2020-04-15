@@ -5,9 +5,8 @@ import store from "../redux/store";
 import "../public/index.css";
 
 ReactDOM.render(
-  console.log("dogs"),
   <Provider store={store}>
-    <div>Hello People!!!!!!</div>,
+    <div>Hello People!</div>
   </Provider>,
   document.getElementById("app") // make sure this is the same as the id of the div in your index.html
 );
