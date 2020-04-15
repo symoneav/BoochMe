@@ -1,10 +1,14 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Link,
-  NavLink,
+  Route,
   Switch,
+  NavLink,
 } from "react-router-dom";
+
+import Companies from "./Companies";
+import Distributors from "./Distributors";
+import Home from "./Home";
 
 const Routes = () => {
   return (
@@ -12,13 +16,15 @@ const Routes = () => {
       <div>
         <nav>
           hola
-          <Navlink to="/">Home</Navlink>
-          <Navlink to="/Distributors">Distributors</Navlink>
-          <Navlink to="/Companies">Companies</Navlink>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/distributors">Distributors</NavLink>
+          <NavLink to="/companies">Companies</NavLink>
         </nav>
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/distributors" component={Distributors} />
+            <Route exact path="/companies" component={Companies} />
           </Switch>
         </main>
       </div>
