@@ -21,11 +21,10 @@ const Routes = () => {
           <NavLink to="/companies">Companies</NavLink> */}
         </nav>
         <main>
-          <Switch>
-            {/* <Route exact path="/" component={Home} />
+          <div id="mapid"></div>
+          {/* <Route exact path="/" component={Home} />
             <Route exact path="/distributors" component={Distributors} />
             <Route exact path="/companies" component={Companies} /> */}
-          </Switch>
         </main>
       </div>
     </Router>
