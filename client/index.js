@@ -25,6 +25,11 @@ L.tileLayer(
       "pk.eyJ1Ijoic3ltb25lYXYiLCJhIjoiY2s3dXdndmpoMDR3MjNmcnk2dWV0eW9seSJ9.ZKSyDGUeOYPFUPYBnviS1Q",
   }
 ).addTo(mymap);
+
+var marker = L.marker([41.8881084, -87.6320523]).addTo(mymap);
+marker
+  .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass in stock!")
+  .openPopup();
 // ReactDOM.render(
 //   <Provider store={store}>
 //     <Routes />
