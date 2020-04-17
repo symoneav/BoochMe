@@ -26,10 +26,42 @@ L.tileLayer(
   }
 ).addTo(mymap);
 
-var marker = L.marker([41.8881084, -87.6320523]).addTo(mymap);
-marker
-  .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass in stock!")
+// var bottleIcon = L.icon({
+//   iconUrl: <img src="beer.png" />,
+
+//   iconSize: [38, 95], // size of the icon
+// size of the shadow
+//   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62], // the same for the shadow
+//   popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+// });
+
+// var marker = L.marker([41.8881084, -87.6320523], { icon: bottleIcon }).addTo(
+//   mymap
+// );
+var wfMarkers = [
+  [41.87569, -87.63503],
+  [41.92475, -87.70137],
+];
+var wfMarker1 = L.marker(wfMarkers[0]).addTo(mymap);
+wfMarker1
+  .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
   .openPopup();
+
+var wfMarker2 = L.marker(wfMarkers[1]).addTo(mymap);
+wfMarker2
+  .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
+  .openPopup();
+// wfMarker
+//   .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
+//   .openPopup();
+
+var marker = L.marker([41.8881084, -87.6320523]).addTo(mymap);
+
+marker
+  .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
+  .openPopup();
+
 // ReactDOM.render(
 //   <Provider store={store}>
 //     <Routes />

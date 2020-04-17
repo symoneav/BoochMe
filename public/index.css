@@ -10,7 +10,7 @@ body {
 
 h1 {
   margin: 0;
-  font-family: "Lobster", cursive;
+  font-family: "Times New Roman", Times, serif;
   font-weight: normal;
   font-size: 2rem;
 }
@@ -20,28 +20,35 @@ aside {
 h1 {
   font: times;
   text-align: center;
+  color: #4e961e;
 }
 
 h2 {
   margin: 0 0 0.5rem 0;
-  font-family: "Lobster", cursive;
+  font-family: "Times New Roman", Times, serif;
   font-weight: normal;
   font-size: 1.2rem;
+  color: black;
 }
 h3 {
   margin: 0 0 0.5rem 0;
-  font-family: "Lobster", cursive;
+  font-family: "Times New Roman", Times, serif;
   font-weight: normal;
   font-size: 1.2rem;
 }
 header {
-  font: times;
-  display: flex;
+  display: grid;
   align-items: center;
-  height: 3rem;
+  height: 5rem;
   padding: 0 0.5rem;
   background-color: white;
-  color: #4e961e;
+  /* color: #4e961e; */
+}
+nav {
+  display: flex;
+  align-content: flex-start;
+  height: 3rem;
+  background-color: white;
 }
 
 #app {
@@ -52,6 +59,15 @@ header {
   flex: 2;
   height: calc(100vh - 3rem);
   overflow: hidden;
+}
+p {
+  text-align: center;
+}
+
+.find-kombucha {
+  border-radius: 3px;
+  border-color: rgb(197, 150, 21);
+  background-color: rgb(197, 150, 21);
 }
 /* #find-kombucha {
   align-items: center;

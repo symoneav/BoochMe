@@ -21,7 +21,6 @@ const Routes = () => {
           <NavLink to="/companies">Companies</NavLink> */}
         </nav>
         <main>
-          <div id="mapid"></div>
           {/* <Route exact path="/" component={Home} />
             <Route exact path="/distributors" component={Distributors} />
             <Route exact path="/companies" component={Companies} /> */}
