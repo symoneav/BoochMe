@@ -1,33 +1,21 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
-  NavLink,
+  withRouter
 } from "react-router-dom";
-
-import Companies from "./Companies";
-import Distributors from "./Distributors";
-import Home from "./Home";
+import Map from './components/map'
+// import Companies from "./Companies";
+// import Distributors from "./Distributors";
+import Home from "./components/Home";
 
 const Routes = () => {
   return (
-    <Router>
-      <div>
-        <nav>
-          hola
-          {/* <NavLink to="/">Home</NavLink>
-          <NavLink to="/distributors">Distributors</NavLink>
-          <NavLink to="/companies">Companies</NavLink> */}
-        </nav>
-        <main>
-          {/* <Route exact path="/" component={Home} />
-            <Route exact path="/distributors" component={Distributors} />
-            <Route exact path="/companies" component={Companies} /> */}
-        </main>
-      </div>
-    </Router>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route exact path='/map' component={Map}/>
+      </Switch>
   );
 };
 
-export default Routes;
+export default withRouter(Routes);

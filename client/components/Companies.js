@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCompanies } from "../redux/companiesReducer";
+import { fetchCompanies } from "../store/companiesReducer";
 export class Companies extends React.Component {
   componentDidMount() {
     this.props.fetchCompanies();
