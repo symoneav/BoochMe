@@ -55,11 +55,11 @@ nav {
   display: flex;
 }
 
-#map {
+/* #map {
   flex: 2;
   height: calc(100vh - 3rem);
   overflow: hidden;
-}
+} */
 p {
   text-align: center;
 }
