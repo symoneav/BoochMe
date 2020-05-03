@@ -4,7 +4,7 @@ import {
   Switch,
   withRouter
 } from "react-router-dom";
-import Map from './components/map'
+import Map from './components/Map'
 // import Companies from "./Companies";
 // import Distributors from "./Distributors";
 import Home from "./components/Home";
