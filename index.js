@@ -2,7 +2,7 @@ const { db } = require("./server/db");
 const app = require("./server");
 // const PORT = 3001;
 
-const port = process.env.PORT || 1237; // this can be very useful if you deploy to Heroku!
+const port = process.env.PORT || 8081; // this can be very useful if you deploy to Heroku!
 
 // db.sync() // sync our database
 //   .then(function () {

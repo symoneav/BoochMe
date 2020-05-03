@@ -7,8 +7,8 @@
 // import Map from "./Map";
 
 var mymap = L.map("map", {
-  center: [41.8881084, -87.6320523],
-  zoom: 13,
+  center: [41.566207999999996, -87.6904448],
+  zoom: 10,
 });
 
 L.tileLayer(
@@ -26,21 +26,9 @@ L.tileLayer(
   }
 ).addTo(mymap);
 
-// var bottleIcon = L.icon({
-//   iconUrl: <img src="beer.png" />,
 
-//   iconSize: [38, 95], // size of the icon
-// size of the shadow
-//   iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-//   shadowAnchor: [4, 62], // the same for the shadow
-//   popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-// });
-
-// var marker = L.marker([41.8881084, -87.6320523], { icon: bottleIcon }).addTo(
-//   mymap
-// );
 var wfMarkers = [
-  [41.87569, -87.63503],
+  [41.566207999999996, -87.6904448],
   [41.92475, -87.70137],
 ];
 var wfMarker1 = L.marker(wfMarkers[0]).addTo(mymap);
@@ -52,9 +40,7 @@ var wfMarker2 = L.marker(wfMarkers[1]).addTo(mymap);
 wfMarker2
   .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
   .openPopup();
-// wfMarker
-//   .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
-//   .openPopup();
+
 
 var marker = L.marker([41.8881084, -87.6320523]).addTo(mymap);
 
@@ -62,16 +48,39 @@ marker
   .bindPopup("<b>We got the Booch!</b><br>Sage Lemongrass is in stock here!")
   .openPopup();
 
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <Routes />
-//   </Provider>,
-//   document.getElementById("app") // make sure this is the same as the id of the div in your index.html
-// );
+  
+  function geoFindMe() {
 
-// ReactDOM.render(
-//   <Provider>
-//     <Map />
-//   </Provider>,
-//   document.getElementById("mapid") // make sure this is the same as the id of the div in your index.html
-// );
+    const status = document.querySelector('#status');
+    const mapLink = document.querySelector('#map-link');
+  
+    mapLink.href = '';
+    mapLink.textContent = '';
+  
+    function success(position) {
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+  
+      status.textContent = '';
+      mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+      mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+      console.log('retrieved your location', mapLink.textContent)
+    }
+  
+    function error() {
+      status.textContent = 'Unable to retrieve your location';
+      console.log('err',mapLink.textContent)
+    }
+  
+    if(!navigator.geolocation) {
+      status.textContent = 'Geolocation is not supported by your browser';
+    } else {
+      status.textContent = 'Locating…';
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+  
+  }
+  
+  document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
+
