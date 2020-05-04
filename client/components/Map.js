@@ -4,12 +4,19 @@ import {connect} from 'react-redux'
 import {findInStock} from '../store/kombuchas'
 
 class Map extends React.Component {
+    constructor(){
+        super()
+        this.handleChange=this.handleChange.bind(this)
+    }
 
 
 productStocked(item){
     this.props.findInStock(item)
 }
 
+handleChange(evt){
+
+}
   render() {
     return (
         <div>
@@ -44,7 +51,7 @@ productStocked(item){
   <div>
   <div>
     <h2>Brands</h2>
-    <select id='brand-options'>
+    <select id='brand-options'  onChange={this.handleChange}>
       <option>Kombucha 365</option>
       <option>WholeSome Booch</option>
       <option>Momma's Kombucha</option>

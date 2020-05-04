@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 // router.use("/companies", require("./companies"));
+// router.use('/map',require('./map'))
 
 router.use(function (req, res, next) {
   const err = new Error("Not found.");
