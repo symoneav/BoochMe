@@ -8,10 +8,10 @@ export const findDistibutors =(itemsWithDistributors)=>({
 })
 
 
-export const findInStock=(item)=>{
+export const findInStock=(itemId)=>{
     return async dispatch =>{
         try{
-        const {data}= await axios.put('/api/map',item)
+        const {data}= await axios.post('/api/map',itemId)
         dispatch(findDistibutors(data))
         }catch(err){
             console.log('having trouble finding where Kombucha is sold')

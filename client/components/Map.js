@@ -7,36 +7,40 @@ import {fetchCompany} from '../store/companiesReducer'
 class Map extends React.Component {
     constructor(){
         super()
-        this.handleSubmit=this.handleSubmit.bind(this)
-        this.handleChange=this.handleChange.bind(this)
+        this.handleChange1=this.handleChange1.bind(this)
+         this.handleChange2=this.handleChange2.bind(this)
     }
 
 
-productStocked(item){
-    this.props.findInStock(item)
-}
+// productStocked(item){
+//     this.props.findInStock(item)
+// }
 
-handleChange(evt){
+handleChange1(evt){
     console.log(Number(evt.target.value))
     const companyId= Number(evt.target.value)
     this.props.getCompany({id:companyId})
-    console.log( 'flavor',evt.target.value)
-    const kombuchaId= Number(evt.target.flavor.value)
+    // console.log( 'flavor',evt.target.value)
+    // const kombuchaId= Number(evt.target.flavor.value)
     // this.props.getKombuchas()
     // this.setState({flavors:this.props.company.kombuchas})
 
 }
 
-handleSubmit(evt){
-    evt.preventDefault()
-
+handleChange2(evt){
+    const kombuchaId=Number(evt.target.value)
+    console.log('kombucha',kombuchaId)
+    this.props.findInStock({id:kombuchaId})
 }
+
+
   render() {
+    const markers =[[ 41.598624,-87.792879],[ 41.567844,-87.634441],[41.556243,-87.693331]]
     return (
         <div>
         <div>
       <LeafletMap
-        center={[41.8881084, -87.6320523]}
+        center={[41.574465, -87.70884]}
         zoom={13}
         maxZoom={20}
         attributionControl={true}
@@ -51,9 +55,29 @@ handleSubmit(evt){
           url='https://api.mapbox.com/styles/v1/symoneav/ck93efi6e01o61imghlqsa45e/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3ltb25lYXYiLCJhIjoiY2s3dXdndmpoMDR3MjNmcnk2dWV0eW9seSJ9.ZKSyDGUeOYPFUPYBnviS1Q'
           
         />
-        <Marker position={[41.8881084, -87.6320523]}>    
+        {markers.map(marker=>{
+          <Marker position={marker}><Popup>We got the Booch</Popup></Marker>
+        })}
+  <Marker position={[41.556243,-87.693331]}>    
           <Popup>
-            Popup for any custom information.
+           We Got the Booch
+          </Popup>
+        </Marker>
+
+ <Marker position={[ 41.567844,-87.634441]}>    
+          <Popup>
+           We Got the Booch
+          </Popup>
+        </Marker>
+
+  <Marker position={[ 41.598624,-87.792879]}>    
+          <Popup>
+           We Got the Booch
+          </Popup>
+        </Marker>
+        <Marker position={[41.574465, -87.70884]}>    
+          <Popup>
+           Symone's house
           </Popup>
         </Marker>
       </LeafletMap>
@@ -65,9 +89,9 @@ handleSubmit(evt){
     <div>
         <form onSubmit={this.handleSubmit}>
   <div>
-  <div onChange>
+  <div>
     <h2>Brands</h2>
-    <select id='brand-options'  onChange={this.handleChange}>
+    <select id='brand-options'  onChange={this.handleChange1}>
       <option value='1'>Kombucha 365</option>
       <option value='2'>WholeSome Booch</option>
       <option value='3'>Momma's Kombucha</option>
@@ -77,7 +101,7 @@ handleSubmit(evt){
     <h3>
       Flavor
     </h3>
-    <select id='brand-flavor-options'>
+    <select id='brand-flavor-options' onChange={this.handleChange2}>
         {this.props.company.kombuchas.map(kombucha=>{
             return(<option key={kombucha.id} value={kombucha.id}>{kombucha.flavor}</option>)
         })}
@@ -115,7 +139,7 @@ handleSubmit(evt){
 }
 
 const mapDispatch=(dispatch)=>({
-    findInStock:(item)=>dispatch(findInStock(item)),
+    findInStock:(itemId)=>dispatch(findInStock(itemId)),
     getCompany:(companyId)=>dispatch(fetchCompany(companyId))
 })
 
