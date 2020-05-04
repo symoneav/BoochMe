@@ -1,5 +1,7 @@
 const { db } = require("./server/db");
 const app = require("./server");
+// require("babel-core/register");
+// require("babel-polyfill");
 // const PORT = 3001;
 
 const port = process.env.PORT || 1237; // this can be very useful if you deploy to Heroku!

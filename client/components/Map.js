@@ -2,10 +2,12 @@ import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import {connect} from 'react-redux'
 import {findInStock} from '../store/kombuchas'
+import {fetchCompany} from '../store/companiesReducer'
 
 class Map extends React.Component {
     constructor(){
         super()
+
         this.handleChange=this.handleChange.bind(this)
     }
 
@@ -15,6 +17,10 @@ productStocked(item){
 }
 
 handleChange(evt){
+    console.log(Number(evt.target.value))
+    const companyId= Number(evt.target.value)
+    this.props.getCompany({id:companyId})
+    // this.setState({flavors:this.props.company.kombuchas})
 
 }
   render() {
@@ -52,9 +58,9 @@ handleChange(evt){
   <div>
     <h2>Brands</h2>
     <select id='brand-options'  onChange={this.handleChange}>
-      <option>Kombucha 365</option>
-      <option>WholeSome Booch</option>
-      <option>Momma's Kombucha</option>
+      <option value='1'>Kombucha 365</option>
+      <option value='2'>WholeSome Booch</option>
+      <option value='3'>Momma's Kombucha</option>
     </select>
   </div>
   <div>
@@ -62,9 +68,11 @@ handleChange(evt){
       Flavor
     </h3>
     <select id='brand-flavor-options'>
-      <option> Ginger Honey</option>
-      <option>Rose Mint</option>
-      <option>Sage Lemongrass</option>
+        {this.props.company.kombuchas.map(kombucha=>{
+            return(<option>{kombucha.flavor}</option>)
+        })}
+       {/* <option>Rost Mint</option> */}
+    
     </select>
   </div>
   <div>
@@ -95,10 +103,15 @@ handleChange(evt){
 }
 
 const mapDispatch=(dispatch)=>({
-    findInStock:(item)=>dispatch(findInStock(item))
+    findInStock:(item)=>dispatch(findInStock(item)),
+    getCompany:(companyId)=>dispatch(fetchCompany(companyId))
 })
 
-export default connect(null,mapDispatch)(Map)
+const mapState = (state)=>({
+    company:state.company
+})
+
+export default connect(mapState,mapDispatch)(Map)
 
 
 
