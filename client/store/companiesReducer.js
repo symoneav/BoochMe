@@ -38,7 +38,7 @@ export const fetchCompany=(id)=>{
 
 }
 
-export default function companiesReducer(state = {kombuchas:[{flavor:'option'}]}, action) {
+export default function companiesReducer(state = {kombuchas:[{id:'',flavor:'option'}]}, action) {
   switch (action.type) {
     case SET_COMPANIES:
       return action.companies;

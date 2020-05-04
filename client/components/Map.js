@@ -7,7 +7,7 @@ import {fetchCompany} from '../store/companiesReducer'
 class Map extends React.Component {
     constructor(){
         super()
-
+        this.handleSubmit=this.handleSubmit.bind(this)
         this.handleChange=this.handleChange.bind(this)
     }
 
@@ -20,7 +20,15 @@ handleChange(evt){
     console.log(Number(evt.target.value))
     const companyId= Number(evt.target.value)
     this.props.getCompany({id:companyId})
+    console.log( 'flavor',evt.target.value)
+    const kombuchaId= Number(evt.target.flavor.value)
+    // this.props.getKombuchas()
     // this.setState({flavors:this.props.company.kombuchas})
+
+}
+
+handleSubmit(evt){
+    evt.preventDefault()
 
 }
   render() {
@@ -43,7 +51,7 @@ handleChange(evt){
           url='https://api.mapbox.com/styles/v1/symoneav/ck93efi6e01o61imghlqsa45e/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3ltb25lYXYiLCJhIjoiY2s3dXdndmpoMDR3MjNmcnk2dWV0eW9seSJ9.ZKSyDGUeOYPFUPYBnviS1Q'
           
         />
-        <Marker position={[41.8881084, -87.6320523]}>
+        <Marker position={[41.8881084, -87.6320523]}>    
           <Popup>
             Popup for any custom information.
           </Popup>
@@ -54,8 +62,10 @@ handleChange(evt){
       <aside>
 {/* <div><a id = "map-link" target="_blank"></a>Hello</a></div> */}
 <div class='panel' id='options-panel'>
+    <div>
+        <form onSubmit={this.handleSubmit}>
   <div>
-  <div>
+  <div onChange>
     <h2>Brands</h2>
     <select id='brand-options'  onChange={this.handleChange}>
       <option value='1'>Kombucha 365</option>
@@ -69,10 +79,8 @@ handleChange(evt){
     </h3>
     <select id='brand-flavor-options'>
         {this.props.company.kombuchas.map(kombucha=>{
-            return(<option>{kombucha.flavor}</option>)
+            return(<option key={kombucha.id} value={kombucha.id}>{kombucha.flavor}</option>)
         })}
-       {/* <option>Rost Mint</option> */}
-    
     </select>
   </div>
   <div>
@@ -89,11 +97,15 @@ handleChange(evt){
   </div>
 </div>
 <p>
-<button  type="button" class='find-kombucha' id='find-me' onClick={()=>this.productStocked(product)}>
+<button  type="sumbit" class='find-kombucha' id='find-me' >
   <p id = "status"></p>
   BoochMe!
 </button>
 </p>
+</form>
+
+</div>
+
 </div>
 </aside> 
 </div>
