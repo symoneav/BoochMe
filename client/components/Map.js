@@ -12,9 +12,7 @@ class Map extends React.Component {
     }
 
 
-// productStocked(item){
-//     this.props.findInStock(item)
-// }
+
 
 handleChange1(evt){
     console.log(Number(evt.target.value))
