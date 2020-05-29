@@ -7,16 +7,25 @@ import {fetchCompany} from '../store/companiesReducer'
 class Map extends React.Component {
     constructor(){
         super()
+        this.state={
+          company:'',
+          flavor:''
+        }
         this.handleChange1=this.handleChange1.bind(this)
          this.handleChange2=this.handleChange2.bind(this)
+         this.handleSubmit=this.handleSubmit.bind(this)
     }
 
-
+handleSubmit(evt){
+  evt.preventDefault()
+console.log(this.state)
+}
 
 
 handleChange1(evt){
     console.log(Number(evt.target.value))
     const companyId= Number(evt.target.value)
+    this.setState({company:companyId})
     this.props.getCompany({id:companyId})
     // console.log( 'flavor',evt.target.value)
     // const kombuchaId= Number(evt.target.flavor.value)
@@ -27,6 +36,7 @@ handleChange1(evt){
 
 handleChange2(evt){
     const kombuchaId=Number(evt.target.value)
+    this.setState({flavor:kombuchaId})
     console.log('kombucha',kombuchaId)
     this.props.findInStock({id:kombuchaId})
 }
