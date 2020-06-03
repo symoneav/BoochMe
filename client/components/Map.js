@@ -18,7 +18,11 @@ class Map extends React.Component {
 
 handleSubmit(evt){
   evt.preventDefault()
-console.log(this.state)
+  const kombuchaId=Number(evt.target.value)
+  this.setState({flavor:kombuchaId})
+  this.props.findInStock({id:kombuchaId})
+  console.log('ran submit')
+  
 }
 
 
@@ -27,6 +31,7 @@ handleChange1(evt){
     const companyId= Number(evt.target.value)
     this.setState({company:companyId})
     this.props.getCompany({id:companyId})
+    console.log('ran change 1')
     // console.log( 'flavor',evt.target.value)
     // const kombuchaId= Number(evt.target.flavor.value)
     // this.props.getKombuchas()
@@ -39,11 +44,20 @@ handleChange2(evt){
     this.setState({flavor:kombuchaId})
     console.log('kombucha',kombuchaId)
     this.props.findInStock({id:kombuchaId})
+    console.log('ran change 2')
 }
 
 
   render() {
-    const markers =[[ 41.598624,-87.792879],[ 41.567844,-87.634441],[41.556243,-87.693331]]
+    console.log('grape',this.props.company)
+    console.log('banana',this.props.kombuchas)
+    const distributors = this.props.kombuchas
+    console.log('one', distributors)
+    distributors.filter(distributor=>distributor.lat = Number(distributor.lat))
+    distributors.filter(distributor=>distributor.lng = Number(distributor.lng))
+    console.log('two',distributors)
+
+
     return (
         <div>
         <div>
@@ -63,26 +77,7 @@ handleChange2(evt){
           url='https://api.mapbox.com/styles/v1/symoneav/ck93efi6e01o61imghlqsa45e/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3ltb25lYXYiLCJhIjoiY2s3dXdndmpoMDR3MjNmcnk2dWV0eW9seSJ9.ZKSyDGUeOYPFUPYBnviS1Q'
           
         />
-        {markers.map(marker=>{
-          <Marker position={marker}><Popup>We got the Booch</Popup></Marker>
-        })}
-  <Marker position={[41.556243,-87.693331]}>    
-          <Popup>
-           We Got the Booch
-          </Popup>
-        </Marker>
-
- <Marker position={[ 41.567844,-87.634441]}>    
-          <Popup>
-           We Got the Booch
-          </Popup>
-        </Marker>
-
-  <Marker position={[ 41.598624,-87.792879]}>    
-          <Popup>
-           We Got the Booch
-          </Popup>
-        </Marker>
+        {distributors.map(distributor=><Marker position={[distributor.lat,distributor.lng]}><Popup>We Got The Booch!</Popup></Marker>)}
         <Marker position={[41.574465, -87.70884]}>    
           <Popup>
            Symone's house
@@ -152,7 +147,8 @@ const mapDispatch=(dispatch)=>({
 })
 
 const mapState = (state)=>({
-    company:state.company
+    company:state.company,
+    kombuchas:state.kombuchas
 })
 
 export default connect(mapState,mapDispatch)(Map)

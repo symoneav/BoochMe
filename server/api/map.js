@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Company, Kombucha,LocationKombucha } = require("../db");
+const { Company, Kombucha, LocationKombucha,Location } = require("../db");
 
 
 router.put('/',async (req,res,next)=>{
@@ -14,13 +14,19 @@ router.put('/',async (req,res,next)=>{
 
 router.post('/',async(req,res,next)=>{
     try{
-       const kombuchas = await LocationKombucha.findAll({
-           where:{
-               kombuchaId:req.body.id
-           }
-       })
-       console.log('PEACHESS',kombuchas)
-        res.json(kombuchas)
+       const kombuchaInStock = await Kombucha.findOrCreate({
+        where: {
+          id: req.body.id,
+        },
+        include: [
+          {
+            model:Location,
+            through: LocationKombucha
+          }
+        ]
+      })
+      console.log('HELLLO',kombuchaInStock[0].locations)
+      res.json(kombuchaInStock[0].locations)
     }
     catch(err){
         next(err)

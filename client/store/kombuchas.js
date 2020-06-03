@@ -23,6 +23,7 @@ export const findInStock=(itemId)=>{
 function kombuchas(state = [],action){
     switch(action.type){
         case FIND_DISTRIBUTORS:
+            console.log('HERMIT',action.itemsWithDistributors)
             return action.itemsWithDistributors
         default:return state
     }

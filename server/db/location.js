@@ -7,8 +7,11 @@ const Location = db.define("location", {
     allowNull: false,
     validate: { notEmpty: true },
   },
-  coordinates:{
-      type: Sequelize.ARRAY(Sequelize.DECIMAL)
+  lat:{
+      type: Sequelize.DECIMAL
+  },
+  lng:{
+    type: Sequelize.DECIMAL
   }
 });
 
